@@ -22,7 +22,7 @@ RUNLEVEL=1 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buil
 
 # Set up user group so docker can be executed without sudo
 sudo usermod -aG docker jake
-sudo newgrp docker
+newgrp docker
 
 # Set up nvidia docker
 distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
