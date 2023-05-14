@@ -2,7 +2,8 @@ _Update system_
 ----
 ```
 sudo apt update
-sudo apt upgrade -y```
+sudo apt upgrade -y
+```
 
 _Prerequisets_
 ----
