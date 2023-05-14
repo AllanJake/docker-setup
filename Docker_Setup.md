@@ -35,7 +35,7 @@ RUNLEVEL=1 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buil
 Set up user group so docker can be executed without sudo
 ----
 ```
-sudo usermod -aG docker jake
+sudo usermod -aG docker $USER
 newgrp docker
 ```
 
@@ -56,6 +56,21 @@ sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
 docker run --rm --runtime=nvidia --gpus all nvidia/cuda:11.6.2-base-ubuntu20.04 nvidia-smi
 ```
+
+Configure Windows Host Port-Forwarding
+----
+This step will allow traffic through the windows host on the docker swarm port to pass through to the WSL run Docker Swarm Manager.
+
+```
+netsh interface portproxy add v4tov4 listenport=2377 listenaddress=0.0.0.0 connectport=2377 connectaddress=[WSL_IP]
+```
+
+you then must also allow the port through the Windows Firewall with
+
+```
+New-NetFirewallRule -DisplayName "WSL2 Docker Swarm Port Bridge" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 2377
+```
+
 
 Configuring Docker to work with your GPU(s)
 ----
