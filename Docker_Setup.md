@@ -1,14 +1,17 @@
 _Update system_
+----
 ```
 sudo apt update
 sudo apt upgrade -y```
 
 _Prerequisets_
+----
 ```
 sudo apt install -y ca-certificates curl gnupg
 ```
 
 _Install Docker_
+----
 ```
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -29,12 +32,14 @@ RUNLEVEL=1 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buil
 
 
 _Set up user group so docker can be executed without sudo_
+----
 ```
 sudo usermod -aG docker jake
 newgrp docker
 ```
 
 _Set up nvidia docker_
+----
 ```
 distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
       && curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
